@@ -7,6 +7,10 @@ function App() {
     <div className="App">
       <Header />
 
+      <Switch>
+          <Route path="/" exact component={Main} />
+        </Switch>
+
       <Footer />
     </div>
   );
