@@ -1,6 +1,6 @@
 const Main = () => {
     return(
-        <p>Main page content here</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui nam non eaque! Cum voluptate fuga optio eligendi ipsum consequuntur facilis, laborum numquam sunt sequi officia, error sit? Repellendus ipsa ab, voluptatem amet itaque dicta, inventore totam numquam consectetur alias modi quam dolorem dolores necessitatibus velit maiores, vitae iste? Aspernatur quos sunt eligendi error, vel labore nam, ipsam laborum maiores cumque architecto ut optio, natus saepe dolores enim et modi excepturi deserunt harum praesentium. Voluptates, modi sapiente. Exercitationem iure neque aperiam corrupti impedit praesentium magnam minus quaerat? Autem accusantium eos ipsam facilis commodi ipsum dignissimos non quis doloremque. Nemo ab quisquam harum est sapiente fuga, numquam minus? Cum inventore, delectus similique ut earum perspiciatis optio est odit fugiat vitae, voluptatum sequi dicta quo officiis voluptatibus dignissimos aspernatur consectetur harum, repudiandae a aperiam maxime tempore eius? Unde aperiam ducimus ad recusandae animi facilis est autem reiciendis maiores praesentium deserunt dolore non rerum quo architecto, magnam minus, cupiditate, esse eaque hic iure illo placeat molestias! Quia nostrum eum eius iste rerum corporis nisi. Similique quaerat commodi dolorum veritatis cumque laudantium facere nemo fuga harum quasi. Alias ut placeat consequuntur, nisi nulla natus reiciendis cumque, beatae sequi magni itaque fugit recusandae quod ipsum corrupti?</p>
     );
 }
 

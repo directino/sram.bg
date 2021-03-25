@@ -1,36 +1,69 @@
-import './Footer.css';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
-                        </ul>
+        <FooterContainer>
+            <div className="footer-middle">
+                <div className="container">
+                    <div className="row">
+                        {/* Column 1*/}
+                        <div className="col-md-3 col-sm-6">
+                            <h4>Контакти</h4>
+                            <ul className="list-unstyled">
+                                <li>София 1000</li>
+                                <li>ул. "Тинтява" 14</li>
+                                <li>тел: 0888 888888</li>
+                            </ul>
+                        </div>
+                        {/* Column 2*/}
+                        <div className="col-md-3 col-sm-6">
+                            <h4>Линкове</h4>
+                            <ul className="list-unstyled">
+                                <li><Link to="/">Нещо</Link></li>
+                                <li><Link to="/">Друго</Link></li>
+                            </ul>
+                        </div>
+                        {/* Column 3*/}
+                        <div className="col-md-6 col-sm-6">
+                            <h4>За проекта</h4>
+                            <ul className="list-unstyled">
+                                <li>Това е изпитният проект на Александър Митев за модула React в СофтУни.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 item text">
-                        <h3>Company Name</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
-                    </div>
-                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                    {/* Social */}
+                {/* Footer Bottom */}
+                <div className="footer-bottom">
+                    <p className="text-xs-center">
+                        &copy;{new Date().getFullYear()} Sram.bg - Всички права запазени!
+                    </p>
                 </div>
-                <p class="copyright">Company Name © 2018</p>
             </div>
-        </footer>
+            </div>
+        </FooterContainer >
     );
 }
 
 export default Footer;
+
+const FooterContainer = styled.footer`
+    .footer-middle {
+        background: var(--blue);
+        padding-top: 3rem;
+        color: var(--white)
+    }
+
+    .footer-bottom {
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+    }
+
+    ul li a {
+        color: #B7BFC4;
+      }
+    
+    ul li a:hover {
+         color:var(--white)
+    }
+`;

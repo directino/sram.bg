@@ -1,10 +1,10 @@
 import { Navbar, Form, Button } from 'react-bootstrap';
-import './Header.css';
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
         <Navbar bg="primary" variant="dark">
-            <Navbar.Brand href="#home">Sram.bg - потребителят отвръща на удара</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">Sram.bg - потребителят отвръща на удара</Navbar.Brand>
             {/* <Nav className="mr-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
                 <Nav.Link href="#features">Features</Nav.Link>
