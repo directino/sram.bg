@@ -9,18 +9,19 @@ const Footer = () => {
                     <div className="row">
                         {/* Column 1*/}
                         <div className="col-md-3 col-sm-6">
-                            <h4>Контакти</h4>
+                            <h4>Адрес</h4>
                             <ul className="list-unstyled">
-                                <li>София 1000</li>
-                                <li>ул. "Тинтява" 14</li>
-                                <li>тел: 0888 888888</li>
+                                <li>София 1799</li>
+                                <li>ж.к. Младост 4, бул.</li>
+                                <li>Александър Малинов № 78</li>
+                                <li>+359899 55 55 92</li>
                             </ul>
                         </div>
                         {/* Column 2*/}
                         <div className="col-md-3 col-sm-6">
                             <h4>Линкове</h4>
                             <ul className="list-unstyled">
-                                <li><Link to="/">Нещо</Link></li>
+                                <li><Link to="/contact">Връзка с нас</Link></li>
                                 <li><Link to="/">Друго</Link></li>
                             </ul>
                         </div>
@@ -28,7 +29,7 @@ const Footer = () => {
                         <div className="col-md-6 col-sm-6">
                             <h4>За проекта</h4>
                             <ul className="list-unstyled">
-                                <li>Това е изпитният проект на Александър Митев за модула React в СофтУни.</li>
+                                <li>Това е изпитният проект на Александър Митев за модула React (Single Page Application) в СофтУни.</li>
                             </ul>
                         </div>
                     </div>
@@ -60,10 +61,10 @@ const FooterContainer = styled.footer`
     }
 
     ul li a {
-        color: #B7BFC4;
+        color: #B8C1CD;
       }
     
     ul li a:hover {
-         color:var(--white)
+         color: #B8C1CD;
     }
 `;

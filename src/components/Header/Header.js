@@ -18,9 +18,11 @@ const Header = () => {
                 <Button className="mr-sm-2" variant="outline-light" type="submit">
                     Вход
                 </Button>
+                <Link to="/register">
                 <Button className="mr-sm-2" variant="outline-light" type="register">
                     Регистрация
                 </Button>
+                </Link>
             </Form>
         </Navbar>
     );
