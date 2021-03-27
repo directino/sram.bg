@@ -1,6 +1,6 @@
 import { Navbar, Form, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../services/authService';
 
 const Header = () => {
     const { currentUser, logout } = useAuth();
@@ -19,7 +19,7 @@ const Header = () => {
             <Navbar.Brand as={Link} to="/">Sram.bg - потребителят отвръща на удара</Navbar.Brand>
             <Form onSubmit={handleLogout} inline style={{position: 'absolute', right: 0}}>
             {currentUser && (<>
-                <div color="white" className="mr-sm-2">Здравей, {currentUser.email}!</div>
+                <div style={{color: "white"}} className="mr-sm-2">Здравей, {currentUser.email}!</div>
                 <Link to="/create">
                 <Button className="mr-sm-2" variant="light" type="login">
                     Подай сигнал

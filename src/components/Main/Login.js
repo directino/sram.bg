@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
-import { useAuth } from "../../contexts/AuthContext"
+import { useAuth } from "../../services/authService"
 import { useHistory, Link } from "react-router-dom"
 
 export default function Login() {
@@ -13,10 +13,6 @@ export default function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-
-    if (passwordRef.current.value.length < 8) {
-        return setError("Паролата трябва да минимум 8 символа!")
-    }
 
     try {
       setError("")
