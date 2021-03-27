@@ -3,21 +3,16 @@ import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
 import { useHistory, Link } from "react-router-dom"
 
-export default function Register() {
+export default function Login() {
   const emailRef = useRef()
   const passwordRef = useRef()
-  const repeatPasswordRef = useRef()
-  const { register } = useAuth()
+  const { login } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
   async function handleSubmit(e) {
     e.preventDefault()
-
-    if (passwordRef.current.value !== repeatPasswordRef.current.value) {
-      return setError("Паролите трябва да са еднакви!")
-    }
 
     if (passwordRef.current.value.length < 8) {
         return setError("Паролата трябва да минимум 8 символа!")
@@ -26,10 +21,10 @@ export default function Register() {
     try {
       setError("")
       setLoading(true)
-      await register(emailRef.current.value, passwordRef.current.value)
+      await login(emailRef.current.value, passwordRef.current.value)
       history.push("/")
     } catch {
-      setError("Неуспешна регистрация!")
+      setError("Неуспешен вход!")
     }
 
     setLoading(false)
@@ -41,7 +36,7 @@ export default function Register() {
             <div className="w-100" style={{ maxWidth: "400px" }}>
                 <Card>
                     <Card.Body>
-                        <h2 className="text-center mb-4">Регистрация</h2>
+                        <h2 className="text-center mb-4">Вход</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
                         <Form onSubmit={handleSubmit}>
                             <Form.Group id="email">
@@ -52,16 +47,12 @@ export default function Register() {
                                 <Form.Label>Парола</Form.Label>
                                 <Form.Control type="password" ref={passwordRef} required></Form.Control>
                             </Form.Group>
-                            <Form.Group id="repeatPassword">
-                                <Form.Label>Повторете паролата</Form.Label>
-                                <Form.Control type="password" ref={repeatPasswordRef} required></Form.Control>
-                            </Form.Group>
-                            <Button disabled={loading} className="w-100" type="submit">Регистрация</Button>
+                            <Button disabled={loading} className="w-100" type="submit">Вход</Button>
                         </Form>
                     </Card.Body>
                 </Card>
                 <div className="w-100 text-center mt-2">
-                    Вече сте регистриран? Моля използвайте <Link to="/login">Вход</Link>!
+                    Не сте регистриран? Моля използвайте <Link to="/register">Регистрация</Link>!
                 </div>
             </div>
         </Container>
