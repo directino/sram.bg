@@ -7,7 +7,7 @@ import Footer from './components/Footer/Footer';
 import Home from './components/Main/Home';
 import Details from './components/Main/Details';
 import Contact from './components/Main/Contact';
-import PageNotFound from './components/Main/PageNotFound';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 import Register from './components/Main/Register';
 import Login from './components/Main/Login';
 import Test from './components/Main/Test';

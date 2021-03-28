@@ -14,7 +14,7 @@ export const getOne = (scammerId) => {
         .catch(error => console.log(error));
 };
 
-export const create = (phone, firstName, secondName, city, description, reporter) => {
+export const create = (phone, firstName, secondName, city, description, reporter, id) => {
     let scammer = {
         phone,
         firstName,
@@ -22,6 +22,7 @@ export const create = (phone, firstName, secondName, city, description, reporter
         city,
         description,
         reporter,
+        id,
     };
     
     return fetch(url, {

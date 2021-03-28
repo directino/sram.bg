@@ -1,8 +1,8 @@
+import db from '../../firebase';
 import { useRef, useState } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../services/authService"
 import { useHistory } from "react-router-dom"
-import * as scammerService from '../../services/scammersService';
 
 export default function Create() {
     const phoneRef = useRef();
@@ -15,39 +15,37 @@ export default function Create() {
     if (currentUser) {
         reporter = currentUser.email;
     }
-    
     const [error, setError] = useState('')
     const history = useHistory()
-  
-    async function handleSubmit(e) {
-      e.preventDefault()
-  
-      if (phoneRef.current.value.length < 8 ||
+
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        if (phoneRef.current.value.length < 8 ||
             phoneRef.current.value.length > 10 ||
             phoneRef.current.value[0] !== "0") {
-        return setError("Въведете валиден телефонен номер във формат 088******* или 02******!")
-      }
-  
-      try {
+            return setError("Въведете валиден телефонен номер във формат 088******* или 02******!")
+        }
+
         setError("")
-        scammerService.create(
-            phoneRef.current.value, 
-            firstNameRef.current.value, 
-            secondNameRef.current.value, 
-            cityRef.current.value, 
-            descriptionRef.current.value, 
-            reporter)
+        return db.ref("scammers")
+            .push({
+                phone: phoneRef.current.value,
+                firstName: firstNameRef.current.value,
+                secondName: secondNameRef.current.value,
+                city: cityRef.current.value,
+                description: descriptionRef.current.value,
+                reporter,
+            })
             .then(() => {
                 history.push('/');
             })
-      } catch {
-        setError("Неуспешна операция!")
-      }
+            .catch(setError("Неуспешна операция!"))
     }
 
     return (
         <Container className="d-flex align-items-center justify-content-center"
-            style={{ minHeight: "50vh" }}>
+            style={{ minHeight: "60vh" }}>
             <div className="w-100" style={{ maxWidth: "600px" }}>
                 <Card>
                     <Card.Body>

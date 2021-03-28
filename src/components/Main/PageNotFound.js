@@ -3,7 +3,7 @@ import { Component } from 'react';
 class PageNotFound extends Component {
     render() {
         return (
-            <h2>Няма никой тук! :(</h2>
+            <h2>Няма никой тук! :( </h2>
         )
     }
 }

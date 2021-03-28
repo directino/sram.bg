@@ -4,27 +4,25 @@ import { useAuth } from "../../services/authService"
 import { useHistory, Link } from "react-router-dom"
 
 export default function Login() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const { login } = useAuth()
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const history = useHistory()
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const { login } = useAuth()
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
+    const history = useHistory()
 
-  async function handleSubmit(e) {
-    e.preventDefault()
+    function handleSubmit(e) {
+        e.preventDefault()
+        setError("")
+        setLoading(true)
+        login(emailRef.current.value, passwordRef.current.value)
+            .then(() => {
+                history.push('/');
+            })
+            .catch(setError("Неуспешен вход!"))
 
-    try {
-      setError("")
-      setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
-      history.push("/")
-    } catch {
-      setError("Неуспешен вход!")
+        setLoading(false)
     }
-
-    setLoading(false)
-  }
 
     return (
         <Container className="d-flex align-items-center justify-content-center"
