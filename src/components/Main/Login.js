@@ -19,9 +19,11 @@ export default function Login() {
                 .then(() => {
                     history.push('/');
                 })
-                .catch(setError("Неуспешен вход!"))
+                .catch(() => {
+                    setError("Грешна парола или имейл!")
+                })
 
-        return setLoading(false)
+            setLoading(false)
 }
 
 return (

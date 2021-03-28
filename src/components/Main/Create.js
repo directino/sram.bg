@@ -28,7 +28,7 @@ export default function Create() {
         }
 
         setError("")
-        return db.ref("scammers")
+        db.ref("scammers")
             .push({
                 phone: phoneRef.current.value,
                 firstName: firstNameRef.current.value,
@@ -40,7 +40,9 @@ export default function Create() {
             .then(() => {
                 history.push('/');
             })
-            .catch(setError("Неуспешна операция!"))
+            .catch(() => {
+                setError("Неуспешна операция!")
+            })
     }
 
     return (
