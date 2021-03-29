@@ -11,6 +11,7 @@ import Login from './components/Main/Login';
 import Test from './components/Main/Test';
 import Create from './components/Main/Create';
 import Info from './components/Main/Info';
+import Profile from './components/Main/Profile';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/scammers/:id" exact component={Details} />
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
+        <Route path="/profile" exact component={Profile} />
         <Route path="/test" exact component={Test} />
         <Route path="/create" exact component={Create} />
         <Route path="/info" exact component={Info} />

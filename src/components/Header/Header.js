@@ -8,8 +8,8 @@ const Header = () => {
     async function handleLogout(e) {
         e.preventDefault();
         try {
-            await logout()
             history.push('/login')
+            await logout()
         } catch {
             console.log('Неуспешен изход');
         }
