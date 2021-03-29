@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [scammers, setScammers] = useState([])
-    const [visible, setVisible] = useState(8)
+    const [visible, setVisible] = useState(6)
     useEffect (() => {
         db.ref('scammers')
           .on("value", (snapshot) => {
@@ -21,7 +21,7 @@ const Home = () => {
     }, []);
 
     const loadMore = () => {
-        setVisible(prevVisible => prevVisible + 4)
+        setVisible(prevVisible => prevVisible + 3)
     }
 
     document.title = "Sram.bg - потребителят отвръща на удара";
@@ -48,7 +48,7 @@ const Home = () => {
                         >
                             <Card.Body>
                                 <Card.Text style={{ display: 'inline' }}>
-                                    Име: {scammer.firstName} {scammer.secondName}, Град/село: София, Тел. {scammer.phone}
+                                    Име: {scammer.firstName} {scammer.secondName}, Град/село: {scammer.city}, Тел. {scammer.phone}
                                 </Card.Text>
                                 <Link to={/scammers/ + scammer.id}>
                                     <Button variant="outline-light" style={{ float: 'right' }}>
@@ -60,7 +60,7 @@ const Home = () => {
                     )
                 })
             }
-            <Button onClick={loadMore} style={{ width: '180px', marginLeft: '47%' }} variant="outline-dark" className="mb-4" type="submit">Покажи по-стари</Button>
+            <Button onClick={loadMore} style={{ width: '180px', marginLeft: '47%' }} variant="outline-dark" className="mb-4 mt-3" type="submit">Покажи по-стари</Button>
         </>
     )
 }
