@@ -6,17 +6,22 @@ import { Link, useHistory } from "react-router-dom"
 export default function Profile() {
   const emailRef = useRef()
   const passwordRef = useRef()
-  const passwordConfirmRef = useRef()
-  const { currentUser, updatePassword, updateEmail } = useAuth()
+  const repeatPasswordRef = useRef()
+  const { currentUser, updatePassword, updateEmail, logout } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match")
-    }
+
+    if (passwordRef.current.value !== repeatPasswordRef.current.value) {
+        return setError("Паролите трябва да са еднакви!")
+      }
+  
+      if (passwordRef.current.value.length < 8 && passwordRef.current.value.length !== 0) {
+          return setError("Паролата трябва да минимум 8 символа!")
+      }
 
     const promises = []
     setLoading(true)
@@ -31,7 +36,8 @@ export default function Profile() {
 
     Promise.all(promises)
       .then(() => {
-        history.push("/")
+        history.push('/login')
+        logout()
       })
       .catch(() => {
         setError("Failed to update account")
@@ -72,7 +78,7 @@ export default function Profile() {
               <Form.Label>Повтори парола</Form.Label>
               <Form.Control
                 type="password"
-                ref={passwordConfirmRef}
+                ref={repeatPasswordRef}
                 placeholder="Оставете празно, ако не желаете промяна"
               />
             </Form.Group>

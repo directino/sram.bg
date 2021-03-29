@@ -12,6 +12,7 @@ import Test from './components/Main/Test';
 import Create from './components/Main/Create';
 import Info from './components/Main/Info';
 import Profile from './components/Main/Profile';
+import ForgotPassword from './components/Main/ForgotPassword';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
+        <Route path="/forgot-password" exact component={ForgotPassword} />
         <Route path="/test" exact component={Test} />
         <Route path="/create" exact component={Create} />
         <Route path="/info" exact component={Info} />
