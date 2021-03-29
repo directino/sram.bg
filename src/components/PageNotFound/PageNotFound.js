@@ -4,6 +4,7 @@ import './PageNotFound.css';
 
 class PageNotFound extends Component {
     render() {
+        document.title = "Sram.bg - страницата не е открита";
         return (
             <main>
                 <svg viewBox="0 0 541.17206 328.45184" height="328.45184" width="541.17206" id="svg2" version="1.1">

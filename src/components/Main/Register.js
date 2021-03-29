@@ -35,6 +35,7 @@ export default function Register() {
     setLoading(false)
   }
 
+  document.title = "Sram.bg - Регистрация";
     return (
         <Container className="d-flex align-items-center justify-content-center"
             style={{ minHeight: "50vh" }}>
