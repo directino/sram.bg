@@ -15,7 +15,7 @@ const Details = ({
                 setScammer(snapshot.val());
             })
 
-    }, []);
+    }, [match.params.id]);
 
     const shamePics = [
         "https://cdn.psychologytoday.com/sites/default/files/field_blog_entry_images/ShameAdobeStock.jpeg",

@@ -12,6 +12,7 @@ import Register from './components/Main/Register';
 import Login from './components/Main/Login';
 import Test from './components/Main/Test';
 import Create from './components/Main/Create';
+import Info from './components/Main/Info';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/test" exact component={Test} />
         <Route path="/create" exact component={Create} />
+        <Route path="/info" exact component={Info} />
         <Route component={PageNotFound} />
 
       </Switch>

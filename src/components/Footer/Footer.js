@@ -22,7 +22,7 @@ const Footer = () => {
                             <h4>Информация</h4>
                             <ul className="list-unstyled">
                                 <li><Link to="/contact">Връзка с нас</Link></li>
-                                <li><Link to="/">Как работи сайта?</Link></li>
+                                <li><Link to="/info">Как работи сайта?</Link></li>
                             </ul>
                         </div>
                         {/* Column 3*/}

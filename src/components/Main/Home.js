@@ -1,27 +1,40 @@
 import db from '../../firebase';
-import { useState, useEffect } from 'react';
-import { Jumbotron, Container, Card, Button } from 'react-bootstrap';
+import { useState, useEffect, useRef } from 'react';
+import { Jumbotron, Container, Card, Button, Form, FormControl, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 // import ScammerCard from './ScammerCard';
 
 const Home = () => {
     const [scammers, setScammers] = useState([])
     const [visible, setVisible] = useState(6)
+    const inputRef = useRef();
+    const [input, setInput] = useState('')
     useEffect (() => {
         db.ref('scammers')
           .on("value", (snapshot) => {
             let arr = []
             snapshot.forEach(snap => {
                 let obj = snap.val();
-                obj.id = snap.key
-                arr.unshift(obj)
+                if (obj.city.includes(input) ||
+                obj.firstName.includes(input) ||
+                obj.secondName.includes(input) ||
+                obj.phone.includes(input) ||
+                obj.description.includes(input)) {
+                    obj.id = snap.key
+                    arr.unshift(obj)
+                }
             });
-             setScammers(arr)
+            setScammers(arr)
         })
-    }, []);
+    }, [input]);
 
     const loadMore = () => {
         setVisible(prevVisible => prevVisible + 3)
+    }
+
+    const handleChange = (e) => {
+        e.preventDefault()
+        setInput(inputRef.current.value);
     }
 
     document.title = "Sram.bg - потребителят отвръща на удара";
@@ -36,6 +49,16 @@ const Home = () => {
                 </p>
                 </Container>
             </Jumbotron>
+            <Form.Group style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
+                <FormControl onChange={handleChange} ref={inputRef} type="text" placeholder="Търси по име, град, телефонен или описание..." />
+            </Form.Group>
+    
+            {(Array.from(scammers).length === 0 && input !== '') &&
+                    <Alert variant="danger" style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
+                        Нямаме безсрамник, който да отговаря на вашето търсене...
+                    </Alert>
+            }
+            
             {
                 Array.from(scammers).slice(0, visible).map(scammer => {
                     return (
