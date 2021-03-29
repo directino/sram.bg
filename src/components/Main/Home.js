@@ -15,11 +15,11 @@ const Home = () => {
             let arr = []
             snapshot.forEach(snap => {
                 let obj = snap.val();
-                if (obj.city.includes(input) ||
-                obj.firstName.includes(input) ||
-                obj.secondName.includes(input) ||
-                obj.phone.includes(input) ||
-                obj.description.includes(input)) {
+                if (obj.city.toLowerCase().includes(input) ||
+                obj.firstName.toLowerCase().includes(input) ||
+                obj.secondName.toLowerCase().includes(input) ||
+                obj.phone.toLowerCase().includes(input) ||
+                obj.description.toLowerCase().includes(input)) {
                     obj.id = snap.key
                     arr.unshift(obj)
                 }
@@ -34,7 +34,7 @@ const Home = () => {
 
     const handleChange = (e) => {
         e.preventDefault()
-        setInput(inputRef.current.value);
+        setInput(inputRef.current.value.toLowerCase());
     }
 
     document.title = "Sram.bg - потребителят отвръща на удара";
