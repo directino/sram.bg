@@ -45,7 +45,7 @@ export default function Create() {
             })
     }
 
-    document.title = "Sram.bg - въведи безсрамник";
+    document.title = "Sram.bg - подай сигнал";
     return (
         <Container className="d-flex align-items-center justify-content-center"
             style={{ minHeight: "60vh" }}>

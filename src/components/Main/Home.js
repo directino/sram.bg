@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [scammers, setScammers] = useState([])
+    const [visible, setVisible] = useState(8)
     useEffect (() => {
         db.ref('scammers')
           .on("value", (snapshot) => {
@@ -13,12 +14,17 @@ const Home = () => {
             snapshot.forEach(snap => {
                 let obj = snap.val();
                 obj.id = snap.key
-                arr.push(obj)
+                arr.unshift(obj)
             });
              setScammers(arr)
         })
     }, []);
 
+    const loadMore = () => {
+        setVisible(prevVisible => prevVisible + 4)
+    }
+
+    document.title = "Sram.bg - потребителят отвръща на удара";
     return (
         <>
             <Jumbotron fluid>
@@ -31,7 +37,7 @@ const Home = () => {
                 </Container>
             </Jumbotron>
             {
-                Array.from(scammers).map(scammer => {
+                Array.from(scammers).slice(0, visible).map(scammer => {
                     return (
                         <Card
                             bg="primary"
@@ -40,7 +46,7 @@ const Home = () => {
                             style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}
                             className="mb-2"
                         >
-                            <Card.Body >
+                            <Card.Body>
                                 <Card.Text style={{ display: 'inline' }}>
                                     Име: {scammer.firstName} {scammer.secondName}, Град/село: София, Тел. {scammer.phone}
                                 </Card.Text>
@@ -54,6 +60,7 @@ const Home = () => {
                     )
                 })
             }
+            <Button onClick={loadMore} style={{ width: '180px', marginLeft: '47%' }} variant="outline-dark" className="mb-4" type="submit">Покажи по-стари</Button>
         </>
     )
 }
