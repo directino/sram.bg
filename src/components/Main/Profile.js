@@ -16,11 +16,11 @@ export default function Profile() {
         e.preventDefault()
 
         if (passwordRef.current.value !== repeatPasswordRef.current.value) {
-            setError("Паролите трябва да са еднакви!")
+            return setError("Паролите трябва да са еднакви!")
         }
 
         if (passwordRef.current.value.length < 8 && passwordRef.current.value.length !== 0) {
-            setError("Паролата трябва да минимум 8 символа!")
+            return setError("Паролата трябва да минимум 8 символа!")
         }
 
         const promises = []

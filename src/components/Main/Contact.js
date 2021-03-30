@@ -9,6 +9,8 @@ export default function Contact() {
     const emailRef = useRef();
     const messageRef = useRef();
     const nameRef = useRef();
+    const recaptchaRef = useRef();
+    const [value, setValue] = useState('')
     const [error, setError] = useState('')
     const { currentUser } = useAuth();
     const history = useHistory();
@@ -19,8 +21,12 @@ export default function Contact() {
 
     function handleSubmit(e) {
         e.preventDefault()
-
         setError("")
+
+        if (value === '') {
+            return setError('Моля отбележете отметката "Не съм робот"!')
+        }
+
         db.ref("messages")
             .push({
                 phone: phoneRef.current.value,
@@ -42,7 +48,7 @@ export default function Contact() {
     }
 
     function onChange(value) {
-        console.log("Captcha value:", value);
+        setValue({value})
     }
 
     document.title = "Sram.bg - връзка с нас";
@@ -79,6 +85,7 @@ export default function Contact() {
                             <textarea className="form-control" cols="30" rows="3" ref={messageRef} placeholder="Съобщение"></textarea>
                             <ReCAPTCHA className="mt-2"
                                 sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                                ref={recaptchaRef}
                                 onChange={onChange}
                             />
                             <button onClick={handleSubmit} className="btn btn-outline-primary text-uppercase mt-2">
