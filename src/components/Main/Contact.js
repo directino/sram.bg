@@ -2,6 +2,7 @@ import db from '../../firebase';
 import { useRef, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useAuth } from "../../services/authService"
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Contact() {
     const phoneRef = useRef();
@@ -29,11 +30,19 @@ export default function Contact() {
             })
             .then(() => {
                 setError("Успешно изпратихте съобщение!")
+                phoneRef.current.value = '';
+                emailRef.current.value = formEmail;
+                nameRef.current.value = '';
+                messageRef.current.value = '';
                 history.push('/contact');
             })
             .catch(() => {
                 setError("Неуспешна операция!")
             })
+    }
+
+    function onChange(value) {
+        console.log("Captcha value:", value);
     }
 
     document.title = "Sram.bg - връзка с нас";
@@ -48,7 +57,7 @@ export default function Contact() {
                         <iframe title="map" src="https://www.google.bg/maps/d/u/0/embed?mid=15msk4RzNDcCUU14nYwRdqILYyNDfpRh3" style={{
                             border: '0',
                             width: '100%',
-                            height: '315px',
+                            height: '400px',
                             frameborder: '0'
                         }} allowFullScreen></iframe>
                     </div>
@@ -56,7 +65,7 @@ export default function Contact() {
                         <h4><strong>Остави съобщение</strong></h4>
                         {error && <div className="alert">
                             {error}
-                            </div>}
+                        </div>}
                         <form>
                             <div className="form-group">
                                 <input type="text" className="form-control" ref={nameRef} placeholder="Име" />
@@ -68,6 +77,10 @@ export default function Contact() {
                                 <input type="tel" className="form-control" ref={phoneRef} placeholder="Телефон" />
                             </div>
                             <textarea className="form-control" cols="30" rows="3" ref={messageRef} placeholder="Съобщение"></textarea>
+                            <ReCAPTCHA className="mt-2"
+                                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                                onChange={onChange}
+                            />
                             <button onClick={handleSubmit} className="btn btn-outline-primary text-uppercase mt-2">
                                 <i className="fa fa-paper-plane-o" aria-hidden="true" />
                                 <i className="fab fa-telegram-plane" />
