@@ -25,6 +25,11 @@ const Header = () => {
                     Подай сигнал
                 </Button>
                 </Link>
+                <Link to="/my-posts">
+                <Button className="mr-sm-2" variant="outline-light" type="profile">
+                    Моите сигнали
+                </Button>
+                </Link>
                 <Link to="/profile">
                 <Button className="mr-sm-2" variant="outline-light" type="profile">
                     Профил

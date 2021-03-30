@@ -8,11 +8,11 @@ import Contact from './components/Main/Contact';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import Register from './components/Main/Register';
 import Login from './components/Main/Login';
-import Test from './components/Main/Test';
 import Create from './components/Main/Create';
-import Info from './components/Main/Info';
 import Profile from './components/Main/Profile';
 import ForgotPassword from './components/Main/ForgotPassword';
+import MyPosts from './components/Main/MyPosts';
+import Edit from './components/Main/Edit';
 
 function App() {
   return (
@@ -26,10 +26,10 @@ function App() {
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
+        <Route path="/my-posts" exact component={MyPosts} />
+        <Route path="/edit-post/:id" exact component={Edit} />
         <Route path="/forgot-password" exact component={ForgotPassword} />
-        <Route path="/test" exact component={Test} />
         <Route path="/create" exact component={Create} />
-        <Route path="/info" exact component={Info} />
         <Route component={PageNotFound} />
 
       </Switch>

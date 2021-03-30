@@ -61,7 +61,7 @@ class PageNotFound extends Component {
                         </g>
                     </g>
                 </svg>
-                <p id="errorText">Ха, нещо се счупи!</p>
+                <p id="errorText">Ха, нещо се счупи!<br />(Чат нямаме, но имаме красива грешка...)</p>
                 <Link id="errorLink" to="/">Начало</Link>
             </main>
         )

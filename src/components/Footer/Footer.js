@@ -19,10 +19,10 @@ const Footer = () => {
                         </div>
                         {/* Column 2*/}
                         <div className="col-md-3 col-sm-6">
-                            <h4>Информация</h4>
+                            <h4>Връзка с нас</h4>
                             <ul className="list-unstyled">
-                                <li><Link to="/contact">Връзка с нас</Link></li>
-                                <li><Link to="/info">Как работи сайта?</Link></li>
+                                <li><Link to="/contact">Остави съобщение</Link></li>
+                                <li><Link to="/chat">Чат</Link></li>
                             </ul>
                         </div>
                         {/* Column 3*/}

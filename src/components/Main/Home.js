@@ -2,7 +2,6 @@ import db from '../../firebase';
 import { useState, useEffect, useRef } from 'react';
 import { Jumbotron, Container, Card, Button, Form, FormControl, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import ScammerCard from './ScammerCard';
 
 const Home = () => {
     const [scammers, setScammers] = useState([])

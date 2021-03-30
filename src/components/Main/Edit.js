@@ -1,22 +1,27 @@
 import db from '../../firebase';
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
-import { useAuth } from "../../services/authService"
 import { useHistory } from "react-router-dom"
 
-export default function Create() {
+export default function Edit({
+    match
+}) {
+    let [scammer, setScammer] = useState({});
     const phoneRef = useRef();
     const firstNameRef = useRef();
     const secondNameRef = useRef();
     const cityRef = useRef();
     const descriptionRef = useRef();
-    const { currentUser } = useAuth();
     const [error, setError] = useState('')
     const history = useHistory()
-    let reporter = '';
-    if (currentUser) {
-        reporter = currentUser.email;
-    } 
+
+    useEffect (() => {
+        db.ref(`scammers/${match.params.id}`)
+            .on("value", (snapshot) => {
+                setScammer(snapshot.val());
+            })
+    }, [match.params.id]);
+
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -28,57 +33,51 @@ export default function Create() {
         }
 
         setError("")
-        db.ref("scammers")
-            .push({
+        db.ref(`scammers/${match.params.id}`)
+            .update({
                 phone: phoneRef.current.value,
                 firstName: firstNameRef.current.value,
                 secondName: secondNameRef.current.value,
                 city: cityRef.current.value,
                 description: descriptionRef.current.value,
-                reporter,
             })
             .then(() => {
-                history.push('/');
+                history.push('/my-posts');
             })
             .catch(() => {
                 setError("Неуспешна операция!")
             })
     }
 
-    function sendNotAuthorizedUserHome() {
-        history.push('/');
-    }
-
-    document.title = "Sram.bg - подай сигнал";
+    document.title = "Sram.bg - редакция сигнал";
     return (
         <Container className="d-flex align-items-center justify-content-center"
             style={{ minHeight: "60vh" }}>
-            {!currentUser && sendNotAuthorizedUserHome()}
             <div className="w-100" style={{ maxWidth: "600px" }}>
                 <Card>
                     <Card.Body>
-                        <h2 className="text-center mb-4">Информация за безсрамника</h2>
+                        <h2 className="text-center mb-4">Редакция на сигнала</h2>
                         {error && <Alert variant="danger">{error}</Alert>}
                         <Form onSubmit={handleSubmit}>
                             <Form.Group id="phone">
                                 <Form.Label>Телефон</Form.Label>
-                                <Form.Control type="number" ref={phoneRef} placeholder="088*******" required></Form.Control>
+                                <Form.Control type="number" ref={phoneRef} defaultValue={scammer.phone} required></Form.Control>
                             </Form.Group>
                             <Form.Group id="firstName">
                                 <Form.Label>Име</Form.Label>
-                                <Form.Control type="text" ref={firstNameRef} required></Form.Control>
+                                <Form.Control type="text" ref={firstNameRef} defaultValue={scammer.firstName} required></Form.Control>
                             </Form.Group>
                             <Form.Group id="secondName">
                                 <Form.Label>Фамилия</Form.Label>
-                                <Form.Control type="text" ref={secondNameRef} required></Form.Control>
+                                <Form.Control type="text" ref={secondNameRef} defaultValue={scammer.secondName} required></Form.Control>
                             </Form.Group>
                             <Form.Group id="city">
                                 <Form.Label>Град/село</Form.Label>
-                                <Form.Control type="text" ref={cityRef} required></Form.Control>
+                                <Form.Control type="text" ref={cityRef} defaultValue={scammer.city} required></Form.Control>
                             </Form.Group>
                             <Form.Group id="description" controlId="exampleForm.ControlTextarea1">
                                 <Form.Label>Опишете измамата</Form.Label>
-                                <Form.Control as="textarea" rows={6} ref={descriptionRef} minLength={50} maxLength={1000} required></Form.Control>
+                                <Form.Control as="textarea" rows={6} ref={descriptionRef} minLength={50} maxLength={1000} defaultValue={scammer.description} required></Form.Control>
                             </Form.Group>
                             <Button className="w-100" type="submit">Въведи</Button>
                         </Form>
