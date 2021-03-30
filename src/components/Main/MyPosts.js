@@ -7,20 +7,23 @@ import { Link } from 'react-router-dom';
 const MyPosts = () => {
     const [scammers, setScammers] = useState([])
     const [visible, setVisible] = useState(6)
+    const [didMount, setDidMount] = useState(false);
     const { currentUser } = useAuth();
-    useEffect (() => {
+    useEffect(() => {
         db.ref('scammers')
-          .on("value", (snapshot) => {
-            let arr = []
-            snapshot.forEach(snap => {
-                let obj = snap.val();
-                if (obj.reporter === currentUser.email) {
-                    obj.id = snap.key
-                    arr.unshift(obj)
-                }
-            });
-            setScammers(arr)
-        })
+            .on("value", (snapshot) => {
+                let arr = []
+                snapshot.forEach(snap => {
+                    let obj = snap.val();
+                    if (obj.reporter === currentUser.email) {
+                        obj.id = snap.key
+                        arr.unshift(obj)
+                    }
+                });
+                setScammers(arr)
+                setDidMount(true)
+            })
+        return () => setDidMount(false);
     }, [currentUser.email]);
 
     const loadMore = () => {
@@ -30,15 +33,12 @@ const MyPosts = () => {
     const deletePost = (id) => {
         db.ref(`scammers/${id}`)
             .remove()
-            .then(function() {
-              console.log("Remove succeeded.")
-            })
-            .catch(function(error) {
-              console.log("Remove failed: " + error.message)
-            });
     }
 
     document.title = "Sram.bg - моите сигнали";
+    if (!didMount) {
+        return null;
+    }
     return (
         <>
             <Jumbotron fluid>
@@ -51,8 +51,8 @@ const MyPosts = () => {
             </Jumbotron>
 
             {(Array.from(scammers).length === 0) &&
-                    <Alert variant="danger" style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
-                        Все още не сте добавили безсрамник...
+                <Alert variant="danger" style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
+                    Все още не сте добавили безсрамник...
                     </Alert>
             }
 
@@ -70,17 +70,17 @@ const MyPosts = () => {
                                 <Card.Text style={{ display: 'inline' }}>
                                     Име: {scammer.firstName} {scammer.secondName}, Град/село: {scammer.city}, Тел. {scammer.phone}
                                 </Card.Text>
-                                <Button 
-                                variant="outline-light" 
-                                className="ml-3" 
-                                style={{ float: 'right' }}
-                                onClick={() => { if (window.confirm('Сигурни ли сте, че искате да изтриете сигнала')) deletePost(scammer.id) }}
+                                <Button
+                                    variant="outline-light"
+                                    className="ml-3"
+                                    style={{ float: 'right' }}
+                                    onClick={() => { if (window.confirm('Сигурни ли сте, че искате да изтриете сигнала')) deletePost(scammer.id) }}
                                 >
-                                        Изтрий
+                                    Изтрий
                                     </Button>
                                 <Link to={/edit-post/ + scammer.id}>
-                                <Button variant="outline-light" style={{ float: 'right' }}>
-                                    Редактирай
+                                    <Button variant="outline-light" style={{ float: 'right' }}>
+                                        Редактирай
                                 </Button>
                                 </Link>
                             </Card.Body>

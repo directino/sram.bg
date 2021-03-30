@@ -12,28 +12,29 @@ export default function Register() {
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault()
 
     if (passwordRef.current.value !== repeatPasswordRef.current.value) {
-      return setError("Паролите трябва да са еднакви!")
-    }
+        return setError("Паролите трябва да са еднакви!")
+      }
+  
+      if (passwordRef.current.value.length < 8) {
+          return setError("Паролата трябва да минимум 8 символа!")
+      }
 
-    if (passwordRef.current.value.length < 8) {
-        return setError("Паролата трябва да минимум 8 символа!")
-    }
-
-    try {
-      setError("")
-      setLoading(true)
-      await register(emailRef.current.value, passwordRef.current.value)
-      history.push("/")
-    } catch {
-      setError("Неуспешна регистрация!")
-    }
+    setError("")
+    register(emailRef.current.value, passwordRef.current.value)
+    .then(() => {
+        setLoading(true)
+        history.push("/")
+    })
+    .catch(() => {
+        setError("Неуспешна регистрация!")
+    })
 
     setLoading(false)
-  }
+}
 
   document.title = "Sram.bg - Регистрация";
     return (

@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 const Home = () => {
     const [scammers, setScammers] = useState([])
     const [visible, setVisible] = useState(6)
-    const inputRef = useRef();
     const [input, setInput] = useState('')
+    const [didMount, setDidMount] = useState('')
+    const inputRef = useRef();
     useEffect (() => {
         db.ref('scammers')
           .on("value", (snapshot) => {
@@ -24,7 +25,9 @@ const Home = () => {
                 }
             });
             setScammers(arr)
+            setDidMount(true)
         })
+        return () => setDidMount(false);
     }, [input]);
 
     const loadMore = () => {
@@ -37,6 +40,9 @@ const Home = () => {
     }
 
     document.title = "Sram.bg - потребителят отвръща на удара";
+    if(!didMount) {
+        return null;
+    }
     return (
         <>
             <Jumbotron fluid>
