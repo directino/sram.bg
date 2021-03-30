@@ -16,7 +16,7 @@ export default function Create() {
     let reporter = '';
     if (currentUser) {
         reporter = currentUser.email;
-    } 
+    }
 
     function handleSubmit(e) {
         e.preventDefault()

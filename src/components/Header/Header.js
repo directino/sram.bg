@@ -17,42 +17,42 @@ const Header = () => {
     return (
         <Navbar bg="primary" variant="dark">
             <Navbar.Brand as={Link} to="/">Sram.bg - потребителят отвръща на удара</Navbar.Brand>
-            <Form onSubmit={handleLogout} inline style={{position: 'absolute', right: 0}}>
-            {currentUser && (<>
-                <div style={{color: "white"}} className="mr-sm-2">Здравей, {currentUser.email}!</div>
-                <Link to="/create">
-                <Button className="mr-sm-2" variant="light" type="login">
-                    Подай сигнал
+            <Form onSubmit={handleLogout} inline style={{ position: 'absolute', right: 0 }}>
+                {currentUser && (<>
+                    <div style={{ color: "white" }} className="mr-sm-2">Здравей, {currentUser.email}!</div>
+                    <Link to="/create">
+                        <Button className="mr-sm-2" variant="light" type="login">
+                            Подай сигнал
                 </Button>
-                </Link>
-                <Link to="/my-posts">
-                <Button className="mr-sm-2" variant="outline-light" type="profile">
-                    Моите сигнали
+                    </Link>
+                    <Link to="/my-posts">
+                        <Button className="mr-sm-2" variant="outline-light" type="profile">
+                            Моите сигнали
                 </Button>
-                </Link>
-                <Link to="/profile">
-                <Button className="mr-sm-2" variant="outline-light" type="profile">
-                    Профил
+                    </Link>
+                    <Link to="/profile">
+                        <Button className="mr-sm-2" variant="outline-light" type="profile">
+                            Профил
                 </Button>
-                </Link>
-                <Button className="mr-sm-2" variant="outline-light" type="create">
-                    Изход
+                    </Link>
+                    <Button className="mr-sm-2" variant="outline-light" type="create">
+                        Изход
                 </Button>
-            </>
-            )}
-            {!currentUser && (<>
-                <Link to="/login">
-                <Button className="mr-sm-2" variant="outline-light" type="login">
-                    Вход
+                </>
+                )}
+                {!currentUser && (<>
+                    <Link to="/login">
+                        <Button className="mr-sm-2" variant="outline-light" type="login">
+                            Вход
                 </Button>
-                </Link>
-                <Link to="/register">
-                <Button className="mr-sm-2" variant="outline-light" type="register">
-                    Регистрация
+                    </Link>
+                    <Link to="/register">
+                        <Button className="mr-sm-2" variant="outline-light" type="register">
+                            Регистрация
                 </Button>
-                </Link>
-            </>
-            )}
+                    </Link>
+                </>
+                )}
             </Form>
         </Navbar>
     );

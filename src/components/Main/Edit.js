@@ -7,7 +7,7 @@ export default function Edit({
     match
 }) {
     let [scammer, setScammer] = useState({});
-    const [didMount, setDidMount] = useState(false); 
+    const [didMount, setDidMount] = useState(false);
     const phoneRef = useRef();
     const firstNameRef = useRef();
     const secondNameRef = useRef();
@@ -16,7 +16,7 @@ export default function Edit({
     const [error, setError] = useState('')
     const history = useHistory()
 
-    useEffect (() => {
+    useEffect(() => {
         db.ref(`scammers/${match.params.id}`)
             .on("value", (snapshot) => {
                 setScammer(snapshot.val());
@@ -53,7 +53,7 @@ export default function Edit({
     }
 
     document.title = "Sram.bg - редакция сигнал";
-    if(!didMount) {
+    if (!didMount) {
         return null;
     }
     return (

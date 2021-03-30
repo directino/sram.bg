@@ -9,24 +9,24 @@ const Home = () => {
     const [input, setInput] = useState('')
     const [didMount, setDidMount] = useState('')
     const inputRef = useRef();
-    useEffect (() => {
+    useEffect(() => {
         db.ref('scammers')
-          .on("value", (snapshot) => {
-            let arr = []
-            snapshot.forEach(snap => {
-                let obj = snap.val();
-                if (obj.city.toLowerCase().includes(input) ||
-                obj.firstName.toLowerCase().includes(input) ||
-                obj.secondName.toLowerCase().includes(input) ||
-                obj.phone.toLowerCase().includes(input) ||
-                obj.description.toLowerCase().includes(input)) {
-                    obj.id = snap.key
-                    arr.unshift(obj)
-                }
-            });
-            setScammers(arr)
-            setDidMount(true)
-        })
+            .on("value", (snapshot) => {
+                let arr = []
+                snapshot.forEach(snap => {
+                    let obj = snap.val();
+                    if (obj.city.toLowerCase().includes(input) ||
+                        obj.firstName.toLowerCase().includes(input) ||
+                        obj.secondName.toLowerCase().includes(input) ||
+                        obj.phone.toLowerCase().includes(input) ||
+                        obj.description.toLowerCase().includes(input)) {
+                        obj.id = snap.key
+                        arr.unshift(obj)
+                    }
+                });
+                setScammers(arr)
+                setDidMount(true)
+            })
         return () => setDidMount(false);
     }, [input]);
 
@@ -40,7 +40,7 @@ const Home = () => {
     }
 
     document.title = "Sram.bg - потребителят отвръща на удара";
-    if(!didMount) {
+    if (!didMount) {
         return null;
     }
     return (
@@ -57,13 +57,13 @@ const Home = () => {
             <Form.Group style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
                 <FormControl onChange={handleChange} ref={inputRef} type="text" placeholder="Търси по име, град, телефонен или описание..." />
             </Form.Group>
-    
+
             {(Array.from(scammers).length === 0 && input !== '') &&
-                    <Alert variant="danger" style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
-                        Нямаме безсрамник, който да отговаря на вашето търсене...
+                <Alert variant="danger" style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
+                    Нямаме безсрамник, който да отговаря на вашето търсене...
                     </Alert>
             }
-            
+
             {
                 Array.from(scammers).slice(0, visible).map(scammer => {
                     return (

@@ -34,13 +34,13 @@ const Footer = () => {
                         </div>
                     </div>
                     {/* Social */}
-                {/* Footer Bottom */}
-                <div className="footer-bottom">
-                    <p className="text-xs-center">
-                        &copy;{new Date().getFullYear()} Sram.bg - Всички права запазени!
+                    {/* Footer Bottom */}
+                    <div className="footer-bottom">
+                        <p className="text-xs-center">
+                            &copy;{new Date().getFullYear()} Sram.bg - Всички права запазени!
                     </p>
+                    </div>
                 </div>
-            </div>
             </div>
         </FooterContainer >
     );

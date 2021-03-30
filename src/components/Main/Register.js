@@ -4,39 +4,39 @@ import { useAuth } from "../../services/authService"
 import { useHistory, Link } from "react-router-dom"
 
 export default function Register() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const repeatPasswordRef = useRef()
-  const { register } = useAuth()
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const history = useHistory()
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const repeatPasswordRef = useRef()
+    const { register } = useAuth()
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
+    const history = useHistory()
 
-  function handleSubmit(e) {
-    e.preventDefault()
+    function handleSubmit(e) {
+        e.preventDefault()
 
-    if (passwordRef.current.value !== repeatPasswordRef.current.value) {
-        return setError("Паролите трябва да са еднакви!")
-      }
-  
-      if (passwordRef.current.value.length < 8) {
-          return setError("Паролата трябва да минимум 8 символа!")
-      }
+        if (passwordRef.current.value !== repeatPasswordRef.current.value) {
+            return setError("Паролите трябва да са еднакви!")
+        }
 
-    setError("")
-    register(emailRef.current.value, passwordRef.current.value)
-    .then(() => {
-        setLoading(true)
-        history.push("/")
-    })
-    .catch(() => {
-        setError("Неуспешна регистрация!")
-    })
+        if (passwordRef.current.value.length < 8) {
+            return setError("Паролата трябва да минимум 8 символа!")
+        }
 
-    setLoading(false)
-}
+        setError("")
+        register(emailRef.current.value, passwordRef.current.value)
+            .then(() => {
+                setLoading(true)
+                history.push("/")
+            })
+            .catch(() => {
+                setError("Неуспешна регистрация!")
+            })
 
-  document.title = "Sram.bg - Регистрация";
+        setLoading(false)
+    }
+
+    document.title = "Sram.bg - Регистрация";
     return (
         <Container className="d-flex align-items-center justify-content-center"
             style={{ minHeight: "50vh" }}>
