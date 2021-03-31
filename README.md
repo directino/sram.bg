@@ -6,17 +6,17 @@ This is a Single Page Application created with React and Firebase.
 
 ## Purpuse of the Project
 
-This project is created by a software engeneering student at SoftUni. The purpose of the project is to demonstrate the student's skills in React and JS. This project will be used for the students React exam.
+This project is created by a software engineering student at SoftUni. The purpose of the project is to demonstrate the student's skills in React and JS. This project will be used for the student's React exam.
 
 ## How to Access the App
 
 ### download + npm install + npm start
 
 You can run the app in the development mode.\
-Dounload project and run commands "npm install" and "npm start"\
+Download the project and run commands "npm install" and "npm start"\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### [http://localhost:3000](http://localhost:3000)
+### [sram-bg.web.app](https://sram-bg.web.app)
 
 Or you could use the link above. Free hosting is provided by Firebase.
 
