@@ -1,4 +1,4 @@
-import db from '../../firebase';
+import { db } from '../../firebase';
 import { useEffect, useState } from 'react';
 import { Jumbotron, Card, Button, Row, Col, Image, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';

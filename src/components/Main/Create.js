@@ -1,4 +1,4 @@
-import db from '../../firebase';
+import { db, storage } from '../../firebase';
 import { useRef, useState } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../services/authService"
@@ -11,6 +11,7 @@ export default function Create() {
     const cityRef = useRef();
     const descriptionRef = useRef();
     const { currentUser } = useAuth();
+    const [file, setFile] = useState(null);
     const [error, setError] = useState('')
     const history = useHistory()
     let reporter = '';
@@ -20,6 +21,10 @@ export default function Create() {
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        if (file === null) {
+            return setError("Моля, качете файл!")
+        }
 
         if (phoneRef.current.value.length < 8 ||
             phoneRef.current.value.length > 10 ||
@@ -37,12 +42,17 @@ export default function Create() {
                 description: descriptionRef.current.value,
                 reporter,
             })
+            .then((returnData) => {
+                storage.ref(returnData.key)
+                    .child(file.name)
+                    .put(file)
+            })
             .then(() => {
                 history.push('/');
             })
             .catch(() => {
                 setError("Неуспешна операция!")
-            })
+            });
     }
 
     function sendNotAuthorizedUserHome() {
@@ -79,6 +89,12 @@ export default function Create() {
                             <Form.Group id="description" controlId="exampleForm.ControlTextarea1">
                                 <Form.Label>Опишете измамата</Form.Label>
                                 <Form.Control as="textarea" rows={6} ref={descriptionRef} minLength={50} maxLength={1000} required></Form.Control>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.File
+                                    id="exampleFormControlFile1"
+                                    onChange={(e) => setFile(e.target.files[0])}
+                                    label="Моля, приложете файл, който удостоверява измамата!" />
                             </Form.Group>
                             <Button className="w-100" type="submit">Въведи</Button>
                         </Form>

@@ -1,4 +1,4 @@
-import db from '../../firebase';
+import { db } from '../../firebase';
 import { useState, useEffect } from 'react';
 import { useAuth } from "../../services/authService"
 import { Jumbotron, Alert, Container, Card, Button } from 'react-bootstrap';
