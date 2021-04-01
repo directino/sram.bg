@@ -44,13 +44,13 @@ const Details = ({
                 <Card.Body>
                     <Card.Header>
                         <Row>
-                            <Col style={{ paddingLeft: '30px' }} md={9}>
+                            <Col style={{ paddingLeft: '30px' }} >
                                 <Card.Title><br /> {scammer.firstName} {scammer.secondName}
                                     <br /><br /> от {scammer.city}
                                     <br /><br /> тел. {scammer.phone}</Card.Title>
                             </Col>
-                            <Col xs={6} md={3}>
-                                <Image style={{ width: '220px', height: '200px' }} src={picture} roundedCircle />
+                            <Col >
+                                <Image style={{ width: '220px', height: '200px', float: "right" }} src={picture} roundedCircle />
                             </Col>
                         </Row>
                     </Card.Header>
