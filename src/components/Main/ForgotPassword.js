@@ -26,6 +26,7 @@ export default function ForgotPassword() {
         setLoading(false)
     }
 
+    document.title = "Sram.bg - забравена парола";
     return (
         <Container className="d-flex align-items-center justify-content-center"
             style={{ minHeight: "50vh" }}>

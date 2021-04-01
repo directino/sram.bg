@@ -10,20 +10,19 @@ const Details = ({
 }) => {
     const [picture, setPicture] = useState({});
     let [scammer, setScammer] = useState({});
-    const [didMount, setDidMount] = useState(false);
     useEffect(() => {
         setPicture(shamePics([Math.floor(Math.random() * 14)]));
         db.ref(`scammers/${match.params.id}`)
             .on("value", (snapshot) => {
                 setScammer(snapshot.val());
-                setDidMount(true)
             })
-        return () => setDidMount(false);
     }, [match.params.id]);
 
-    if (!didMount) {
-        return null;
-    }
+    useEffect(() => {
+        return () => {}
+    }, []);
+
+    document.title = "Sram.bg - описание на измамата";
     return (
         <>
             <Jumbotron fluid>

@@ -7,7 +7,6 @@ const Home = () => {
     const [scammers, setScammers] = useState([])
     const [visible, setVisible] = useState(6)
     const [input, setInput] = useState('')
-    const [didMount, setDidMount] = useState('')
     const inputRef = useRef();
     useEffect(() => {
         db.ref('scammers')
@@ -25,10 +24,12 @@ const Home = () => {
                     }
                 });
                 setScammers(arr)
-                setDidMount(true)
             })
-        return () => setDidMount(false);
     }, [input]);
+
+    useEffect(() => {
+        return () => {}
+    }, []);
 
     const loadMore = () => {
         setVisible(prevVisible => prevVisible + 3)
@@ -40,9 +41,6 @@ const Home = () => {
     }
 
     document.title = "Sram.bg - потребителят отвръща на удара";
-    if (!didMount) {
-        return null;
-    }
     return (
         <>
             <Jumbotron fluid>
