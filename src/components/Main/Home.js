@@ -88,7 +88,7 @@ const Home = () => {
                     )
                 })
             }
-            <Button onClick={loadMore} style={{ marginLeft: '50%' }} variant="outline-dark" className="mb-4 mt-3" type="submit">Покажи по-стари</Button>
+            <Button onClick={loadMore} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto' }} variant="outline-dark" className="mb-4 mt-3" type="submit">Покажи по-стари</Button>
         </>
     )
 }

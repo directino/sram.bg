@@ -89,7 +89,7 @@ const MyPosts = () => {
                 })
             }
             {
-                Array.from(scammers).length > 6 && <Button onClick={loadMore} style={{ marginLeft: '50%' }} variant="outline-dark" className="mb-4 mt-3" type="submit">Покажи по-стари</Button>
+                Array.from(scammers).length > 6 && <Button onClick={loadMore} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto' }} variant="outline-dark" className="mt-3" type="submit">Покажи по-стари</Button>
             }
         </>
     )

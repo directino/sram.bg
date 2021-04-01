@@ -60,7 +60,7 @@ const Details = ({
                     </Card.Text>
                 </Card.Body>
             </Card>
-            <Button onClick={() => history.goBack()} style={{ marginLeft: '50%' }} variant="outline-dark" className="mb-4" type="submit">Назад</Button>
+            <Button onClick={() => history.goBack()} style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto' }} variant="outline-dark" className="mb-4" type="submit">Назад</Button>
         </>
     );
 };
