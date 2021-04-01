@@ -38,7 +38,7 @@ const Details = ({
                 bg="primary"
                 text="white"
                 key={scammer.id}
-                style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}
+                style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }}
                 className="mb-5 mt-4"
             >
                 <Card.Body>
@@ -60,7 +60,7 @@ const Details = ({
                     </Card.Text>
                 </Card.Body>
             </Card>
-            <Button onClick={() => history.goBack()} style={{ width: '180px', marginLeft: '47%' }} variant="outline-dark" className="mb-4" type="submit">Назад</Button>
+            <Button onClick={() => history.goBack()} style={{ marginLeft: '50%' }} variant="outline-dark" className="mb-4" type="submit">Назад</Button>
         </>
     );
 };

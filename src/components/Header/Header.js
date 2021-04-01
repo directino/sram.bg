@@ -1,4 +1,4 @@
-import { Navbar, Form, Button } from 'react-bootstrap';
+import { Navbar, Nav, Form, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../services/authService';
 
@@ -15,9 +15,14 @@ const Header = () => {
         }
     }
     return (
-        <Navbar bg="primary" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" >
             <Navbar.Brand as={Link} to="/">Sram.bg - потребителят отвръща на удара</Navbar.Brand>
-            <Form onSubmit={handleLogout} inline style={{ position: 'absolute', right: 0 }}>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="mr-auto" >
+                </Nav>
+                <Nav>
+                <Form onSubmit={handleLogout} inline >
                 {currentUser && (<>
                     <div style={{ color: "white" }} className="mr-sm-2">Здравей, {currentUser.email}!</div>
                     <Link to="/create">
@@ -54,6 +59,8 @@ const Header = () => {
                 </>
                 )}
             </Form>
+                </Nav>
+            </Navbar.Collapse>
         </Navbar>
     );
 }

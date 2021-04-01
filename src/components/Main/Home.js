@@ -54,7 +54,7 @@ const Home = () => {
                 </p>
                 </Container>
             </Jumbotron>
-            <Form.Group style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <Form.Group style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }}>
                 <FormControl onChange={handleChange} ref={inputRef} type="text" placeholder="Търси по име, град, телефонен или описание..." />
             </Form.Group>
 
@@ -71,7 +71,7 @@ const Home = () => {
                             bg="primary"
                             text="white"
                             key={scammer.id}
-                            style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}
+                            style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }}
                             className="mb-2"
                         >
                             <Card.Body>
@@ -88,7 +88,7 @@ const Home = () => {
                     )
                 })
             }
-            <Button onClick={loadMore} style={{ width: '180px', marginLeft: '47%' }} variant="outline-dark" className="mb-4 mt-3" type="submit">Покажи по-стари</Button>
+            <Button onClick={loadMore} style={{ marginLeft: '50%' }} variant="outline-dark" className="mb-4 mt-3" type="submit">Покажи по-стари</Button>
         </>
     )
 }

@@ -63,7 +63,7 @@ const MyPosts = () => {
                             bg="primary"
                             text="white"
                             key={scammer.id}
-                            style={{ width: '1000px', marginLeft: 'auto', marginRight: 'auto' }}
+                            style={{ width: '60%', marginLeft: 'auto', marginRight: 'auto' }}
                             className="mb-2"
                         >
                             <Card.Body>
@@ -89,7 +89,7 @@ const MyPosts = () => {
                 })
             }
             {
-                Array.from(scammers).length > 6 && <Button onClick={loadMore} style={{ width: '180px', marginLeft: '47%' }} variant="outline-dark" className="mb-4 mt-3" type="submit">Покажи по-стари</Button>
+                Array.from(scammers).length > 6 && <Button onClick={loadMore} style={{ marginLeft: '50%' }} variant="outline-dark" className="mb-4 mt-3" type="submit">Покажи по-стари</Button>
             }
         </>
     )
