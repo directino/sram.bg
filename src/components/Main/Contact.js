@@ -1,10 +1,9 @@
 import { db } from '../../firebase';
 import { useRef, useState } from "react"
-import { useHistory } from "react-router-dom"
 import { useAuth } from "../../services/authService"
 import ReCAPTCHA from "react-google-recaptcha";
 
-export default function Contact() {
+export default function Contact({ history }) {
     const phoneRef = useRef();
     const emailRef = useRef();
     const messageRef = useRef();
@@ -12,7 +11,6 @@ export default function Contact() {
     const [value, setValue] = useState('')
     const [error, setError] = useState('')
     const { currentUser } = useAuth();
-    const history = useHistory();
     let formEmail = '';
     if (currentUser) {
         formEmail = currentUser.email

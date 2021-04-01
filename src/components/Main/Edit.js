@@ -1,10 +1,10 @@
 import { db } from '../../firebase';
 import { useRef, useState, useEffect } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
-import { useHistory } from "react-router-dom"
 
 export default function Edit({
-    match
+    match,
+    history
 }) {
     let [scammer, setScammer] = useState({});
     const [didMount, setDidMount] = useState(false);
@@ -14,7 +14,6 @@ export default function Edit({
     const cityRef = useRef();
     const descriptionRef = useRef();
     const [error, setError] = useState('')
-    const history = useHistory()
 
     useEffect(() => {
         db.ref(`scammers/${match.params.id}`)

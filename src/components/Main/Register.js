@@ -1,16 +1,15 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../services/authService"
-import { useHistory, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
-export default function Register() {
+export default function Register({ history }) {
     const emailRef = useRef()
     const passwordRef = useRef()
     const repeatPasswordRef = useRef()
     const { register } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
-    const history = useHistory()
 
     function handleSubmit(e) {
         e.preventDefault()

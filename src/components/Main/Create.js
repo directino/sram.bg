@@ -2,9 +2,8 @@ import { db, storage } from '../../firebase';
 import { useRef, useState } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { useAuth } from "../../services/authService"
-import { useHistory } from "react-router-dom"
 
-export default function Create() {
+export default function Create({ history }) {
     const phoneRef = useRef();
     const firstNameRef = useRef();
     const secondNameRef = useRef();
@@ -13,7 +12,6 @@ export default function Create() {
     const { currentUser } = useAuth();
     const [file, setFile] = useState(null);
     const [error, setError] = useState('')
-    const history = useHistory()
     let reporter = '';
     if (currentUser) {
         reporter = currentUser.email;
