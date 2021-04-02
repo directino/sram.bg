@@ -53,15 +53,10 @@ export default function Create({ history }) {
             });
     }
 
-    function sendNotAuthorizedUserHome() {
-        history.push('/');
-    }
-
     document.title = "Sram.bg - подай сигнал";
     return (
         <Container className="d-flex align-items-center justify-content-center"
             style={{ minHeight: "60vh" }}>
-            {!currentUser && sendNotAuthorizedUserHome()}
             <div className="w-100" style={{ maxWidth: "600px" }}>
                 <Card>
                     <Card.Body>
@@ -94,7 +89,7 @@ export default function Create({ history }) {
                                     onChange={(e) => setFile(e.target.files[0])}
                                     label="Моля, приложете файл, който удостоверява измамата!" />
                             </Form.Group>
-                            <Button className="w-100" type="submit">Въведи</Button>
+                            {currentUser && <Button className="w-100" type="submit">Въведи</Button>}
                         </Form>
                     </Card.Body>
                 </Card>

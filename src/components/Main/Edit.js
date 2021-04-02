@@ -1,6 +1,7 @@
 import { db } from '../../firebase';
 import { useRef, useState, useEffect } from "react"
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
+import { useAuth } from "../../services/authService"
 
 export default function Edit({
     match,
@@ -12,18 +13,18 @@ export default function Edit({
     const secondNameRef = useRef();
     const cityRef = useRef();
     const descriptionRef = useRef();
+    const { currentUser } = useAuth();
     const [error, setError] = useState('')
+    const [didMount, setDidMount] = useState(false);
 
     useEffect(() => {
         db.ref(`scammers/${match.params.id}`)
             .on("value", (snapshot) => {
                 setScammer(snapshot.val());
+                setDidMount(true);
             })
+        return () => setDidMount(false);
     }, [match.params.id]);
-
-    useEffect(() => {
-        return () => {}
-    }, []);
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -32,6 +33,10 @@ export default function Edit({
             phoneRef.current.value.length > 10 ||
             phoneRef.current.value[0] !== "0") {
             return setError("Въведете валиден телефонен номер във формат 088******* или 02******!")
+        }
+
+        if (currentUser.email !== scammer.reporter) {
+            return setError("Не може да променяте чужди сигнали!")
         }
 
         setError("")
@@ -52,6 +57,9 @@ export default function Edit({
     }
 
     document.title = "Sram.bg - редакция сигнал";
+    if (!didMount) {
+        return null;
+    }
     return (
         <Container className="d-flex align-items-center justify-content-center"
             style={{ minHeight: "60vh" }}>
@@ -81,7 +89,7 @@ export default function Edit({
                                 <Form.Label>Опишете измамата</Form.Label>
                                 <Form.Control as="textarea" rows={6} ref={descriptionRef} minLength={50} maxLength={1000} defaultValue={scammer.description} required></Form.Control>
                             </Form.Group>
-                            <Button className="w-100" type="submit">Въведи</Button>
+                            {currentUser && <Button className="w-100" type="submit">Въведи</Button>}
                         </Form>
                     </Card.Body>
                 </Card>

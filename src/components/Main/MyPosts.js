@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 const MyPosts = () => {
     const [scammers, setScammers] = useState([])
     const [visible, setVisible] = useState(6)
+    const [didMount, setDidMount] = useState(false);
     const { currentUser } = useAuth();
     useEffect(() => {
         db.ref('scammers')
@@ -20,23 +21,24 @@ const MyPosts = () => {
                     }
                 });
                 setScammers(arr)
+                setDidMount(true)
             })
+        return () => setDidMount(false);
     }, [currentUser.email]);
-
-    useEffect(() => {
-        return () => {}
-    }, []);
-
-    const loadMore = () => {
-        setVisible(prevVisible => prevVisible + 3)
-    }
 
     const deletePost = (id) => {
         db.ref(`scammers/${id}`)
             .remove()
     }
 
+    const loadMore = () => {
+        setVisible(prevVisible => prevVisible + 3)
+    }
+
     document.title = "Sram.bg - моите сигнали";
+    if (!didMount) {
+        return null;
+    }
     return (
         <>
             <Jumbotron fluid>
